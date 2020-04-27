@@ -5,7 +5,7 @@
     "scripts": {
         "start": "webpack-dev-server --env.ENVIRONMENT=development --mode development --hot",
         "build": "webpack --env.ENVIRONMENT=production --mode production",
-        "test": "jest",
+        "test": "jest --passWithNoTests",
         "lint": "eslint './src/**/*.{ts,tsx}'",
         "release": "standard-version"
     },
