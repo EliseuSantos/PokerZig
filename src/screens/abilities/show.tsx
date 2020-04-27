@@ -6,18 +6,18 @@ import styled from 'styled-components';
 import Page from '../../components/layout/Page';
 
 import { ApplicationState } from '../../store';
-import { Move } from '../../store/moves/types';
-import { fetchItemRequest } from '../../store/pokemons/actions';
+import { Ability } from '../../store/abilities/types';
+import { fetchItemRequest } from '../../store/abilities/actions';
 import SliderPokemon from '../../components/SliderPokemon';
 
 interface PropsFromState {
     loading: boolean;
-    item: Move | any;
+    item: Ability | any;
     errors?: string;
 }
 
 interface PropsFromDispatch {
-    fetchMove: typeof fetchItemRequest;
+    fetchAbility: typeof fetchItemRequest;
 }
 
 interface RouteParams {
@@ -25,7 +25,7 @@ interface RouteParams {
 }
 
 interface State {
-    selected?: Move;
+    selected?: Ability;
 }
 
 type AllProps = PropsFromState & PropsFromDispatch & RouteComponentProps<RouteParams>;
@@ -40,7 +40,7 @@ const Wrapper = styled.div`
     overflow: hidden;
 `;
 
-class ShowMovePage extends React.Component<AllProps, State> {
+class ShowAbilityPage extends React.Component<AllProps, State> {
     constructor(props: AllProps) {
         super(props);
 
@@ -48,8 +48,8 @@ class ShowMovePage extends React.Component<AllProps, State> {
     }
 
     public componentDidMount() {
-        const { match, fetchMove } = this.props;
-        fetchMove(match.params.id);
+        const { match, fetchAbility } = this.props;
+        fetchAbility(match.params.id);
     }
 
     public render() {
@@ -64,14 +64,14 @@ class ShowMovePage extends React.Component<AllProps, State> {
     }
 }
 
-const mapStateToProps = ({ pokemons }: ApplicationState) => ({
-    loading: pokemons.loading,
-    errors: pokemons.errors,
-    item: pokemons.item,
+const mapStateToProps = ({ abilities }: ApplicationState) => ({
+    loading: abilities.loading,
+    errors: abilities.errors,
+    item: abilities.item,
 });
 
 const mapDispatchToProps = {
-    fetchMove: (name: string) => fetchItemRequest(name),
+    fetchAbility: (name: string) => fetchItemRequest(name),
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowMovePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ShowAbilityPage);

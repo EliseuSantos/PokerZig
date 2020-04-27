@@ -1,11 +1,11 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { MoveActionTypes } from './types';
+import { AbilityActionTypes } from './types';
 import { fetchError, fetchSuccess, fetchItemSuccess } from './actions';
 import api from '../../helpers/api';
 
 function* handleFetch() {
     try {
-        const res = yield call(api.getMovesList, { limit: 19 });
+        const res = yield call(api.getAbilitiesList, { limit: 19 });
 
         if (res.error) {
             yield put(fetchError(res.error));
@@ -22,12 +22,12 @@ function* handleFetch() {
 }
 
 function* watchFetchRequest() {
-    yield takeEvery(MoveActionTypes.FETCH_REQUEST, handleFetch);
+    yield takeEvery(AbilityActionTypes.FETCH_REQUEST, handleFetch);
 }
 
 function* handleFetchItem(action: any) {
     try {
-        const res = yield call(api.getMoveByName, action.payload);
+        const res = yield call(api.getAbilityByName, action.payload);
 
         if (res.error) {
             yield put(fetchError(res.error));
@@ -44,11 +44,11 @@ function* handleFetchItem(action: any) {
 }
 
 function* watchFetchItemRequest() {
-    yield takeEvery(MoveActionTypes.FETCH_ITEM_REQUEST, handleFetchItem);
+    yield takeEvery(AbilityActionTypes.FETCH_ITEM_REQUEST, handleFetchItem);
 }
 
-function* movesSaga() {
+function* abilitiesSaga() {
     yield all([fork(watchFetchRequest), fork(watchFetchItemRequest)]);
 }
 
-export default movesSaga;
+export default abilitiesSaga;

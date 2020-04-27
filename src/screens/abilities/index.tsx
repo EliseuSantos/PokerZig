@@ -6,13 +6,13 @@ import Page from '../../components/layout/Page';
 import IconBack from '../../components/IconBack';
 
 import { ApplicationState } from '../../store';
-import { Move } from '../../store/moves/types';
-import { fetchRequest } from '../../store/moves/actions';
+import { Ability } from '../../store/abilities/types';
+import { fetchRequest } from '../../store/abilities/actions';
 import CardText from '../../components/CardText';
 
 interface PropsFromState {
     loading: boolean;
-    data: Move[];
+    data: Ability[];
     errors?: string;
 }
 
@@ -41,7 +41,7 @@ const WrapperCards = styled.div`
     text-align: center;
 `;
 
-class MoveIndexScreen extends React.Component<AllProps> {
+class AbilityIndexScreen extends React.Component<AllProps> {
     public componentDidMount() {
         const { fetchRequest: fr } = this.props;
         fr();
@@ -65,12 +65,12 @@ class MoveIndexScreen extends React.Component<AllProps> {
             <Wrapper>
                 <IconBack className="icon-back" link="/" />
                 <WrapperCards>
-                    {data.map((move: any, key) => (
+                    {data.map((ability: any, key) => (
                         <CardText
                             className="card-item"
                             key={key}
-                            title={move.name}
-                            link={`/moves`}
+                            title={ability.name}
+                            link={`/abilities`}
                         />
                     ))}
                 </WrapperCards>
@@ -89,14 +89,14 @@ class MoveIndexScreen extends React.Component<AllProps> {
     }
 }
 
-const mapStateToProps = ({ moves }: ApplicationState) => ({
-    loading: moves.loading,
-    errors: moves.errors,
-    data: moves.data,
+const mapStateToProps = ({ abilities }: ApplicationState) => ({
+    loading: abilities.loading,
+    errors: abilities.errors,
+    data: abilities.data,
 });
 
 const mapDispatchToProps = {
     fetchRequest,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoveIndexScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AbilityIndexScreen);

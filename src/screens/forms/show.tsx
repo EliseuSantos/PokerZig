@@ -6,18 +6,18 @@ import styled from 'styled-components';
 import Page from '../../components/layout/Page';
 
 import { ApplicationState } from '../../store';
-import { Move } from '../../store/moves/types';
-import { fetchItemRequest } from '../../store/pokemons/actions';
+import { Form } from '../../store/forms/types';
+import { fetchItemRequest } from '../../store/forms/actions';
 import SliderPokemon from '../../components/SliderPokemon';
 
 interface PropsFromState {
     loading: boolean;
-    item: Move | any;
+    item: Form | any;
     errors?: string;
 }
 
 interface PropsFromDispatch {
-    fetchMove: typeof fetchItemRequest;
+    fetchForm: typeof fetchItemRequest;
 }
 
 interface RouteParams {
@@ -25,7 +25,7 @@ interface RouteParams {
 }
 
 interface State {
-    selected?: Move;
+    selected?: Form;
 }
 
 type AllProps = PropsFromState & PropsFromDispatch & RouteComponentProps<RouteParams>;
@@ -40,7 +40,7 @@ const Wrapper = styled.div`
     overflow: hidden;
 `;
 
-class ShowMovePage extends React.Component<AllProps, State> {
+class ShowFormPage extends React.Component<AllProps, State> {
     constructor(props: AllProps) {
         super(props);
 
@@ -48,8 +48,8 @@ class ShowMovePage extends React.Component<AllProps, State> {
     }
 
     public componentDidMount() {
-        const { match, fetchMove } = this.props;
-        fetchMove(match.params.id);
+        const { match, fetchForm } = this.props;
+        fetchForm(match.params.id);
     }
 
     public render() {
@@ -64,14 +64,14 @@ class ShowMovePage extends React.Component<AllProps, State> {
     }
 }
 
-const mapStateToProps = ({ pokemons }: ApplicationState) => ({
-    loading: pokemons.loading,
-    errors: pokemons.errors,
-    item: pokemons.item,
+const mapStateToProps = ({ forms }: ApplicationState) => ({
+    loading: forms.loading,
+    errors: forms.errors,
+    item: forms.item,
 });
 
 const mapDispatchToProps = {
-    fetchMove: (name: string) => fetchItemRequest(name),
+    fetchForm: (name: string) => fetchItemRequest(name),
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowMovePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ShowFormPage);

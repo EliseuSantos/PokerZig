@@ -7,6 +7,7 @@ export interface Generic {
 
 export interface Move {
     id: number;
+    [key: string]: any;
 }
 
 export enum MoveActionTypes {

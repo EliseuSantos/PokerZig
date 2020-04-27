@@ -19,9 +19,8 @@ function Index() {
             <Content>
                 <Card link="/pokemons" title="Pokemon" image="pikachu.png" />
                 <Card link="/moves" title="Moves" image="movimento.png" />
-                <Card link="/pokemons" title="Abilities" image="habilidades.png" />
-                <Card link="/pokemons" title="Forms" image="formas.png" />
-                <Card link="/pokemons" title="Locations" image="mapa.png" />
+                <Card link="/abilities" title="Abilities" image="habilidades.png" />
+                <Card link="/forms" title="Forms" image="formas.png" />
             </Content>
         </Page>
     );
