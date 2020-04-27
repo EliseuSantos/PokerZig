@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-interface CardPokemonProps {
+interface CardTextProps {
     title: string;
     link: string;
     className: string;
@@ -45,7 +45,7 @@ const CardItem = styled.div`
     }
 `;
 
-const CardText = styled.p`
+const CardTextInner = styled.p`
     font-size: 20px;
     color: #4c5656;
     margin-top: 30px;
@@ -56,14 +56,14 @@ const CardText = styled.p`
     transition: color 0.3s ease-out;
 `;
 
-const CardPokemon: React.SFC<CardPokemonProps> = ({ title, link }) => (
+const CardText: React.SFC<CardTextProps> = ({ title, link }) => (
     <Wrapper className="card-item">
         <NavLink exact to={link} className="card-link">
             <CardItem>
-                <CardText className="card-text">{title}</CardText>
+                <CardTextInner className="card-text">{title}</CardTextInner>
             </CardItem>
         </NavLink>
     </Wrapper>
 );
 
-export default CardPokemon;
+export default CardText;

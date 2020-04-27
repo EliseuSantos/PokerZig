@@ -91,7 +91,7 @@ const CardOverlay = styled.div`
         height: 118px;
         display: block;
         position: absolute;
-        background: var(--bg-color);
+        background: rgba(0, 0, 0, 0.04);
         border-radius: 50%;
         top: 7px;
         left: 7px;

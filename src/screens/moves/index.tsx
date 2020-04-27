@@ -6,13 +6,13 @@ import Page from '../../components/layout/Page';
 import IconBack from '../../components/IconBack';
 
 import { ApplicationState } from '../../store';
-import { Pokemon } from '../../store/pokemons/types';
-import { fetchRequest } from '../../store/pokemons/actions';
+import { Move } from '../../store/moves/types';
+import { fetchRequest } from '../../store/moves/actions';
 import CardText from '../../components/CardText';
 
 interface PropsFromState {
     loading: boolean;
-    data: Pokemon[];
+    data: Move[];
     errors?: string;
 }
 
@@ -41,7 +41,7 @@ const WrapperCards = styled.div`
     text-align: center;
 `;
 
-class PokemonIndexScreen extends React.Component<AllProps> {
+class MoveIndexScreen extends React.Component<AllProps> {
     public componentDidMount() {
         const { fetchRequest: fr } = this.props;
         fr();
@@ -65,12 +65,12 @@ class PokemonIndexScreen extends React.Component<AllProps> {
             <Wrapper>
                 <IconBack className="icon-back" link="/" />
                 <WrapperCards>
-                    {data.map((pokemon, key) => (
+                    {data.map((move: any, key) => (
                         <CardText
                             className="card-item"
                             key={key}
-                            title={pokemon.name}
-                            link={`/pokemons/${pokemon.name}`}
+                            title={move.name}
+                            link={`/moves/${move.name}`}
                         />
                     ))}
                 </WrapperCards>
@@ -89,14 +89,14 @@ class PokemonIndexScreen extends React.Component<AllProps> {
     }
 }
 
-const mapStateToProps = ({ pokemons }: ApplicationState) => ({
-    loading: pokemons.loading,
-    errors: pokemons.errors,
-    data: pokemons.data,
+const mapStateToProps = ({ moves }: ApplicationState) => ({
+    loading: moves.loading,
+    errors: moves.errors,
+    data: moves.data,
 });
 
 const mapDispatchToProps = {
     fetchRequest,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonIndexScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MoveIndexScreen);

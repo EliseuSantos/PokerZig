@@ -1,11 +1,29 @@
 import { ApiResponse } from '../apiResponse';
+export interface Sprites {
+    back_default: string | any;
+    back_female: string | any;
+    back_shiny: string | any;
+    back_shiny_female: string | any;
+    front_default: string | any;
+    front_female: string | any;
+    front_shiny: string | any;
+    front_shiny_female: string | any;
+}
+
+export interface Generic {
+    name: string | any;
+    url: string | any;
+}
+
 export interface Pokemon {
     id: number;
     name: string;
     url: string;
-    abilities?: Array<any>;
+    abilities?: Array<{
+        ability: Generic;
+    }>;
     base_experience?: number;
-    forms?: Array<any>;
+    forms?: Array<Generic>;
     game_indices?: Array<any>;
     height?: number;
     weight?: number;
@@ -13,9 +31,11 @@ export interface Pokemon {
     held_items?: Array<any>;
     is_default?: boolean;
     location_area_encounters?: string;
-    moves?: Array<any>;
+    moves?: Array<{
+        move: Generic;
+    }>;
     species?: any;
-    sprites?: any;
+    sprites?: Sprites;
     stats?: Array<any>;
     types?: Array<any>;
 }

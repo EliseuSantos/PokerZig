@@ -2,6 +2,7 @@ import * as React from 'react';
 import Page from '../components/layout/Page';
 import Card from '../components/Card';
 import styled from 'styled-components';
+import IconBack from '../components/IconBack';
 
 const Content = styled.div`
     display: flex;
@@ -17,7 +18,7 @@ function Index() {
         <Page>
             <Content>
                 <Card link="/pokemons" title="Pokemon" image="pikachu.png" />
-                <Card link="/pokemons" title="Moves" image="movimento.png" />
+                <Card link="/moves" title="Moves" image="movimento.png" />
                 <Card link="/pokemons" title="Abilities" image="habilidades.png" />
                 <Card link="/pokemons" title="Forms" image="formas.png" />
                 <Card link="/pokemons" title="Locations" image="mapa.png" />

@@ -5,6 +5,7 @@ import Root from './components/layout/Root';
 import Header from './components/layout/Header';
 import IndexScreen from './screens/index';
 import PokemonsScreen from './screens/pokemon';
+import MovesScreen from './screens/move';
 
 const Routes: React.SFC = () => (
     <Root>
@@ -12,6 +13,10 @@ const Routes: React.SFC = () => (
         <BrowserRouter>
             <Route exact path="/" component={IndexScreen} />
             <Route path="/pokemons" component={PokemonsScreen} />
+            <Route path="/moves" component={MovesScreen} />
+            <Route path="/abilities" component={PokemonsScreen} />
+            <Route path="/forms" component={PokemonsScreen} />
+            <Route path="/locations" component={PokemonsScreen} />
             <Route component={() => <div>Not Found</div>} />
         </BrowserRouter>
     </Root>
